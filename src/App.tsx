@@ -39,7 +39,7 @@ const mobileImages = [
   { src: '/mb7.png', delay: 1.4, isStatic: true },
 ];
 
-const desktopImages = [
+const desktopImages = [ 
   { src: '/1.png', delay: 0.2, isStatic: false },
   { src: '/2.png', delay: 0.4, isStatic: false },
   { src: '/3.png', delay: 0.6, isStatic: false },
