@@ -30,23 +30,23 @@ const getMobileVH = () => {
   return null;
 };
 const mobileImages = [
-  { src: '/mobile/mbme.png', delay: 0.2, isStatic: false },
+  { src: '/mobile/mbname.png', delay: 0.2, isStatic: false },
   { src: '/mobile/7.png', delay: 0.4, isStatic: false },
   { src: '/mobile/mb5-6.png', delay: 0.6, isStatic: false },
   { src: '/mobile/mb3-4.png', delay: 0.8, isStatic: false },
   { src: '/mobile/mb1-2.png', delay: 1.0, isStatic: false },
-  { src: '/mobile/mbname.png', delay: 1.2, isStatic: false },
+  { src: '/mobile/mbme.png', delay: 1.2, isStatic: false },
   { src: '/mobile/mobile bg.png', delay: 1.4, isStatic: true },
 ];
 
 const desktopImages = [ 
-  { src: '/pc/me.png', delay: 0.2, isStatic: false },
+  { src: '/pc/name.png', delay: 0.2, isStatic: false },
   { src: '/pc/7.png', delay: 0.4, isStatic: false },
   { src: '/pc/5-6.png', delay: 0.6, isStatic: false },
   { src: '/pc/3-4.png', delay: 0.8, isStatic: false },
   { src: '/pc/1-2.png', delay: 1.0, isStatic: false },
   { src: '/pc/me 2.png', delay: 1.2, isStatic: false },
-  { src: '/pc/name.png', delay: 1.4, isStatic: false },
+  { src: '/pc/me.png', delay: 1.4, isStatic: false },
   { src: '/pc/bg.png', delay: 1.6, isStatic: true },
 ];
 
