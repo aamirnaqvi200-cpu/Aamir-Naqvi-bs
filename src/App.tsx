@@ -36,7 +36,7 @@ const mobileImages = [
   { src: '/mb4.png', delay: 0.8 },
   { src: '/mb5.png', delay: 1.0 },
   { src: '/mb6.png', delay: 1.2 },
-  { src: '/mb7.png', delay: 1.4 },
+  { src: '/pc/bg.png', delay: 1.4 },
 ];
 
 const desktopImages = [
