@@ -220,7 +220,7 @@ function App() {
       {/* Portfolio Section */}
       <div 
         ref={portfolioSectionRef} 
-        className="relative w-full bg-[#c2c2c2] z-[100] rounded-t-[3rem] rounded-b-[3rem] opacity-100"
+        className="relative w-full bg-[#f0f0f0] z-[100] rounded-t-[3rem] rounded-b-[3rem] opacity-100"
         style={{ 
           minHeight: window.innerWidth < 768 ? 'calc(var(--mobile-vh) * 100)' : '100vh',
           zIndex: 9999 
