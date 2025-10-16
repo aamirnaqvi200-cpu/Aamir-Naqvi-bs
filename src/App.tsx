@@ -30,7 +30,7 @@ const getMobileVH = () => {
   return null;
 };
 const mobileImages = [
-  { src: '/mb1.png', delay: 0.2 },
+  { src: '/pc/1.png', delay: 0.2 },
   { src: '/mb2.png', delay: 0.4 },
   { src: '/mb3.png', delay: 0.6 },
   { src: '/mb4.png', delay: 0.8 },
