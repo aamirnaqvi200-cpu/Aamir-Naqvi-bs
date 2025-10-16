@@ -142,12 +142,7 @@ function App() {
  
   return ( 
     <div className="relative">
-     
-      {/* Cinematic Effects Overlay */}
-      <div className="vignette-effect" style={{ pointerEvents: 'none' }} />
-      <div className="edge-blur" style={{ pointerEvents: 'none' }} />
-      <div className="film-grain" style={{ pointerEvents: 'none' }} />
-       
+   
       {/* Splash Screen */}
       {isLoading && <SplashScreen onLoadComplete={handleLoadComplete} />}
 
