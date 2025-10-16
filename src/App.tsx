@@ -47,7 +47,7 @@ const desktopImages = [
   { src: '/5.png', delay: 1.0 },
   { src: '/6.png', delay: 1.2 },
   { src: '/7.png', delay: 1.4 },
-  { src: '/8.png', delay: 1.6 },
+  { src: '/pc/bg.png', delay: 1.6 },
 ];
 
 
