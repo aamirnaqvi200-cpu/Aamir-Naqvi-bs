@@ -30,24 +30,24 @@ const getMobileVH = () => {
   return null;
 };
 const mobileImages = [
-  { src: '/pc/bg.png', delay: 0.2 },
-  { src: '/mb2.png', delay: 0.4 },
-  { src: '/mb3.png', delay: 0.6 },
-  { src: '/mb4.png', delay: 0.8 },
-  { src: '/mb5.png', delay: 1.0 },
-  { src: '/mb6.png', delay: 1.2 },
-  { src: '/pc/bg.png', delay: 1.4 },
+  { src: '/mb1.png', delay: 0.2, isStatic: false },
+  { src: '/mb2.png', delay: 0.4, isStatic: false },
+  { src: '/mb3.png', delay: 0.6, isStatic: false },
+  { src: '/mb4.png', delay: 0.8, isStatic: false },
+  { src: '/mb5.png', delay: 1.0, isStatic: false },
+  { src: '/mb6.png', delay: 1.2, isStatic: false },
+  { src: '/mb7.png', delay: 1.4, isStatic: true },
 ];
 
 const desktopImages = [
-  { src: '/1.png', delay: 0.2 },
-  { src: '/2.png', delay: 0.4 },
-  { src: '/3.png', delay: 0.6 },
-  { src: '/4.png', delay: 0.8 },
-  { src: '/5.png', delay: 1.0 },
-  { src: '/6.png', delay: 1.2 },
-  { src: '/7.png', delay: 1.4 },
-  { src: '/pc/bg.png', delay: 1.6 },
+  { src: '/1.png', delay: 0.2, isStatic: false },
+  { src: '/2.png', delay: 0.4, isStatic: false },
+  { src: '/3.png', delay: 0.6, isStatic: false },
+  { src: '/4.png', delay: 0.8, isStatic: false },
+  { src: '/5.png', delay: 1.0, isStatic: false },
+  { src: '/6.png', delay: 1.2, isStatic: false },
+  { src: '/7.png', delay: 1.4, isStatic: false },
+  { src: '/8.png', delay: 1.6, isStatic: true },
 ];
 
 
@@ -57,6 +57,7 @@ function App() {
   const [showContact, setShowContact] = React.useState(false);
   const heroRef = useRef<HTMLDivElement>(null);
   const portfolioSectionRef = useRef<HTMLDivElement>(null);
+  const fixedBackgroundRef = useRef<HTMLDivElement>(null);
   const mobileImagesRef = useRef<(HTMLDivElement | null)[]>([]);
   const desktopImagesRef = useRef<(HTMLDivElement | null)[]>([]);
   const [mobileVH, setMobileVH] = useState<number | null>(null);
@@ -98,9 +99,10 @@ function App() {
     gsap.registerPlugin(ScrollTrigger);
 
     const imagesToAnimate = isMobile() ? mobileImagesRef.current : desktopImagesRef.current;
+    const images = isMobile() ? mobileImages : desktopImages;
 
-    imagesToAnimate.forEach((imageRef) => {
-      if (imageRef) {
+    imagesToAnimate.forEach((imageRef, index) => {
+      if (imageRef && !images[index].isStatic) {
         gsap.to(imageRef, {
           y: 40,
           scrollTrigger: {
@@ -183,9 +185,9 @@ function App() {
               ref={(el) => (mobileImagesRef.current[index] = el)}
               className="hero-image-layer fixed inset-0 w-full h-full"
               style={{
-                zIndex: index + 1,
-                animation: `slideUp 1s ease-out ${img.delay}s forwards`,
-                transform: 'translateY(100vh)',
+                zIndex: img.isStatic ? 0 : index + 10,
+                animation: img.isStatic ? 'none' : `slideUp 1s ease-out ${img.delay}s forwards`,
+                transform: img.isStatic ? 'translateY(0)' : 'translateY(100vh)',
               }}
             >
               <img
@@ -205,9 +207,9 @@ function App() {
               ref={(el) => (desktopImagesRef.current[index] = el)}
               className="hero-image-layer fixed inset-0 w-full h-full"
               style={{
-                zIndex: index + 1,
-                animation: `slideUp 1s ease-out ${img.delay}s forwards`,
-                transform: 'translateY(100vh)',
+                zIndex: img.isStatic ? 0 : index + 10,
+                animation: img.isStatic ? 'none' : `slideUp 1s ease-out ${img.delay}s forwards`,
+                transform: img.isStatic ? 'translateY(0)' : 'translateY(100vh)',
               }}
             >
               <img
