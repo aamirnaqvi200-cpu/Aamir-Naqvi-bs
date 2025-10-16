@@ -29,111 +29,38 @@ const getMobileVH = () => {
   }
   return null;
 };
-interface TestimonialBadge {
-  image: string;
-  position: { top: string; left: string };
-  delay: number;
-  shineDelay: number;
-  shineDuration: number;
-  scale: number;
-}
- 
-const testimonialBadges: TestimonialBadge[] = [ 
-  { image: "/badges/1.png", position: { top: "30%", left: "24%" }, delay: 1.5, shineDelay: 1.3, shineDuration: 14, scale: 1.0 },
-  
-  { image: "/badges/4.png", position: { top: "60%", left: "71%" }, delay: 2.8, shineDelay: 0.2, shineDuration: 12, scale: 0.8 }, 
-  
-  { image: "/badges/3.png", position: { top: "50%", left: "29%" }, delay: 1.1, shineDelay: 1.7, shineDuration: 15, scale: 0.9 },  
-  
-  { image: "/badges/2.png", position: { top: "25%", left: "85%" }, delay: 3.4, shineDelay: 0.1, shineDuration: 13, scale: 0.7 },
-  
-  { image: "/badges/5.png", position: { top: "25%", left: "10%" }, delay: 2.7, shineDelay: 1.9, shineDuration: 16, scale: 1.1 },
-   
-  { image: "/badges/6.png", position: { top: "42%", left: "78%" }, delay: 1.0, shineDelay: 0.8, shineDuration: 12, scale: 0.8 },
-  
-  { image: "/badges/7.png", position: { top: "60%", left: "17%" }, delay: 3.3, shineDelay: 1.5, shineDuration: 14, scale: 0.9 },
-  { image: "/badges/8.png", position: { top: "42%", left: "13%" }, delay: 2.6, shineDelay: 0.2, shineDuration: 13, scale: 0.6 }, 
-  
-  { image: "/badges/9.png", position: { top: "50%", left: "58%" }, delay: 1.9, shineDelay: 1.7, shineDuration: 15, scale: 0.9 },
-  { image: "/badges/10.png", position: { top: "30%", left: "66%" }, delay: 3.2, shineDelay: 0.1, shineDuration: 16, scale: 0.8 },
+const mobileImages = [
+  { src: '/mb1.png', delay: 0.2 },
+  { src: '/mb2.png', delay: 0.4 },
+  { src: '/mb3.png', delay: 0.6 },
+  { src: '/mb4.png', delay: 0.8 },
+  { src: '/mb5.png', delay: 1.0 },
+  { src: '/mb6.png', delay: 1.2 },
+  { src: '/mb7.png', delay: 1.4 },
 ];
 
-export function TestimonialBadgesGroup() {
-  return (
-    <>
-      {testimonialBadges.map((badge, index) => (
-        <TestimonialBadge key={index} badge={badge} />
-      ))}
-    </>
-  );
-}
-
-function TestimonialBadge({ badge }: { badge: TestimonialBadge }) {
-  return (
-    <div
-      className={`absolute opacity-0 animate-fade-up`}
-      style={{
-        top: badge.position.top,
-        left: badge.position.left,
-        animationDelay: `${badge.delay}s`,
-        animationFillMode: "forwards",
-        transform: `scale(${badge.scale})`,
-      }}
-    >
-      <div className="relative w-auto h-auto max-w-[50px] sm:max-w-[0px] md:max-w-[100px] lg:max-w-[230px]">
-        {/* Base Badge PNG */}
-        <img
-          src={badge.image}
-          alt="testimonial badge"
-          className="w-full h-auto block relative z-10 opacity-10 hover:opacity-50 transition-opacity duration-300"
-        />
-
-        {/* Shine Overlay */}
-          <div
-            className="absolute inset-0 z-20 pointer-events-none animate-shine-diagonal"
-            style={{
-              WebkitMaskImage: `url(${badge.image})`,
-              maskImage: `url(${badge.image})`,
-              WebkitMaskSize: 'contain',
-              maskSize: 'contain',
-              WebkitMaskRepeat: 'no-repeat',
-              maskRepeat: 'no-repeat',
-              animationDelay: `${badge.shineDelay}s`,
-              animationDuration: `${badge.shineDuration}s`,
-              '--shine-delay': `${badge.shineDelay}s`,
-              '--shine-duration': `${badge.shineDuration}s`,
-            } as React.CSSProperties}
-          />
-
-      </div>
-    </div>
-  );
-}
+const desktopImages = [
+  { src: '/1.png', delay: 0.2 },
+  { src: '/2.png', delay: 0.4 },
+  { src: '/3.png', delay: 0.6 },
+  { src: '/4.png', delay: 0.8 },
+  { src: '/5.png', delay: 1.0 },
+  { src: '/6.png', delay: 1.2 },
+  { src: '/7.png', delay: 1.4 },
+  { src: '/8.png', delay: 1.6 },
+];
 
 
 
 function App() {
   const [isLoading, setIsLoading] = React.useState(true);
-  const [showTestimonials, setShowTestimonials] = React.useState(true);
   const [showContact, setShowContact] = React.useState(false);
- const [showportrait, setShowportrait] = React.useState(true);
-   const [showbase, setShowbase] = React.useState(true);
-   const [showeyes, setShoweyes] = React.useState(true);
-  const [showMobileBadges, setShowMobileBadges] = React.useState(true);
   const heroRef = useRef<HTMLDivElement>(null);
-  const portraitRef = useRef<HTMLDivElement>(null);
-  const baseRef = useRef<HTMLDivElement>(null);
-  const eyesRef = useRef<HTMLDivElement>(null);
-  const backgroundTextRef = useRef<HTMLDivElement>(null);
   const portfolioSectionRef = useRef<HTMLDivElement>(null);
-  const newMainTextRef = useRef<HTMLDivElement>(null);
-  const newScrollIndicatorRef = useRef<HTMLDivElement>(null);
-  const fixedBackgroundRef = useRef<HTMLDivElement>(null); 
-  const portfolioRef = useRef<HTMLDivElement>(null);
+  const mobileImagesRef = useRef<(HTMLDivElement | null)[]>([]);
+  const desktopImagesRef = useRef<(HTMLDivElement | null)[]>([]);
   const [mobileVH, setMobileVH] = useState<number | null>(null);
 
-  // Use throttled mouse tracking hook
-  const { mousePosition, handleMouseEnter, handleMouseLeave } = useThrottledMouseTracking(!isMobile());
 
   // Handle mobile viewport height
   useEffect(() => {
@@ -170,58 +97,22 @@ function App() {
     ScrollTrigger.getAll().forEach(trigger => trigger.kill());
     gsap.registerPlugin(ScrollTrigger);
 
-    // Desktop-only hero animations
-    if (!isMobile()) {
-      // Create a single timeline for all hero elements
-      const heroTl = gsap.timeline({
-        scrollTrigger: {
-          trigger: portfolioSectionRef.current,
-          start: "top bottom",
-          end: "top 70%",
-          scrub: 4,
-          invalidateOnRefresh: false,
-          ease: "power2.out",
-        }
-      });
+    const imagesToAnimate = isMobile() ? mobileImagesRef.current : desktopImagesRef.current;
 
-      // Batch hero elements animation
-      const heroElements = [portraitRef.current, baseRef.current, eyesRef.current, newScrollIndicatorRef.current];
-      heroElements.forEach(element => {
-        if (element) {
-          heroTl.to(element, { 
-            y: 50,
-            ease: "power2.out"
-          }, 0);
-        }
-      }); 
+    imagesToAnimate.forEach((imageRef) => {
+      if (imageRef) {
+        gsap.to(imageRef, {
+          y: 40,
+          scrollTrigger: {
+            trigger: portfolioSectionRef.current,
+            start: "top bottom",
+            end: "top top",
+            scrub: 1,
+          }
+        });
+      }
+    });
 
-      // New main text animation
-      gsap.to(newMainTextRef.current, {
-        y: 100,
-        opacity: 0,
-        scrollTrigger: {
-          trigger: portraitRef.current,
-          start: "top top",
-          end: "top+=3000",
-          scrub: 0.5
-        }
-      }); 
-
-      // Background text animation
-      gsap.to(backgroundTextRef.current, {
-        y: -200,
-        scaleY: 1,
-        transformOrigin: "top center",
-        scrollTrigger: {
-          trigger: heroRef.current,
-          start: "center center",
-          end: "bottom top",
-          scrub: 1,
-        }
-      });
-    }
-
-    // Portfolio section animation
     if (portfolioSectionRef.current) {
       gsap.to(portfolioSectionRef.current, {
         y: -900,
@@ -234,50 +125,12 @@ function App() {
       });
     }
 
-    // Visibility triggers
-    const visibilityTriggers = [
-      {
-        start: "center top",
-        onEnter: () => setShowTestimonials(false),
-        onLeaveBack: () => setShowTestimonials(true),
-      },
-      {
-        start: "center bottom",
-        onEnter: () => {
-          setShowContact(true);
-          setShowbase(false);
-          setShoweyes(false);
-        },
-        onLeaveBack: () => {
-          setShowContact(false);
-          setShowbase(true);
-          setShoweyes(true);
-        },
-      },
-      {
-        start: "center bottom",
-        onEnter: () => setShowportrait(false),
-        onLeaveBack: () => setShowportrait(true),
-      }
-    ];
-
-    visibilityTriggers.forEach(trigger => {
-      ScrollTrigger.create({
-        trigger: portfolioSectionRef.current,
-        start: trigger.start,
-        fastScrollEnd: true,
-        onEnter: trigger.onEnter,
-        onLeaveBack: trigger.onLeaveBack,
-      });
-    });
-
-    // Mobile badge visibility trigger
     ScrollTrigger.create({
       trigger: portfolioSectionRef.current,
-      start: "top center",
+      start: "center bottom",
       fastScrollEnd: true,
-      onEnter: () => setShowMobileBadges(false),
-      onLeaveBack: () => setShowMobileBadges(true),
+      onEnter: () => setShowContact(true),
+      onLeaveBack: () => setShowContact(false),
     });
 
     return () => {
@@ -296,9 +149,6 @@ function App() {
       {/* Splash Screen */}
       {isLoading && <SplashScreen onLoadComplete={handleLoadComplete} />}
 
-      {/* Mobile Badge Carousel - Only visible on mobile */}
-      <MobileBadgeCarousel isVisible={showMobileBadges} />
-
 <div
   ref={fixedBackgroundRef}
   className="fixed inset-0 bg-center bg-no-repeat z-[-1] 
@@ -316,221 +166,58 @@ function App() {
   <div className="absolute inset-0 bg-black/0" />
 </div>
  
-      {/* Main Hero Section */} 
-      <div 
+      {/* Main Hero Section */}
+      <div
         ref={heroRef}
-        className="relative w-full overflow-hidden bg-transparent chromatic-aberration"
-        style={{ 
+        className="relative w-full overflow-hidden bg-transparent"
+        style={{
           minHeight: window.innerWidth < 768 ? 'calc(var(--mobile-vh) * 100)' : '100vh',
           height: window.innerWidth < 768 ? 'calc(var(--mobile-vh) * 100)' : '100vh'
         }}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
       >
-
-         {/* Base */}
-      <div
-        ref={baseRef}
-        className={`fixed inset-0 flex items-center justify-center z-20 transition-opacity duration-100`}
-        style={{
-          top: window.innerWidth < 768 ? "30%" : "10%",
-          left: "0%",
-          opacity: showbase ? 1 : 0,
-          pointerEvents: showbase ? "auto" : "none",
-        }}
-      > 
-        <div className="relative">
-          <div
-            className="
-              w-[34.65rem] h-[34.65rem]
-              sm:w-[540px] sm:h-[540px]
-              md:w-[45rem] md:h-[45rem]
-              lg:w-[56.25rem] lg:h-[56.25rem]
-              overflow-hidden
-            "
-          >
-            <img
-              src="/base.png"
-              alt="Base"
-              className="w-full h-full object-cover"
-              style={{ transform: "scale(1.05)" }}
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/0 via-transparent to-transparent" />
-          </div>
-        </div>
-      </div>
-
-      {/* Portrait */}
-      <div
-        ref={portraitRef}
-        className={`fixed inset-0 flex items-center justify-center z-40 transition-opacity duration-100`}
-        style={{
-          top: window.innerWidth < 768 ? "30%" : "10%", 
-          left: "0%",
-          opacity: showportrait ? 1 : 0,
-          pointerEvents: showportrait ? "auto" : "none",
-        }}
-      >
-        <div className="relative"> 
-          <div
-            className="
-              w-[34.65rem] h-[34.65rem] 
-              lg:w-[56.25rem] lg:h-[56.25rem]
-              overflow-hidden
-            "
-          >
-            <img
-              src="/me.png"
-              alt="Portrait"
-              className="w-full h-full object-cover"
-              style={{ transform: "scale(1.05)" }}
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/0 via-transparent to-transparent" />
-          </div>
-        </div>
-      </div>
-
-      {/* Eyes */}
-      <div
-        ref={eyesRef}
-        className={`fixed inset-0 flex items-center justify-center z-30 transition-opacity duration-100`}
-        style={{
-          top: window.innerWidth < 768 ? "30%" : "10%",
-          left: "0%",
-          opacity: showeyes ? 1 : 0,
-          pointerEvents: showeyes ? "auto" : "none",
-          transform: isMobile() ? 'none' : `translate(${mousePosition.x * 8}px, ${mousePosition.y * 8}px)`,
-        }}
-      >
-        <div className="relative">
-          <div
-            className="
-              w-[34.65rem] h-[34.65rem]
-              sm:w-[540px] sm:h-[540px]
-              md:w-[45rem] md:h-[45rem]
-              lg:w-[56.25rem] lg:h-[56.25rem]
-              overflow-hidden
-              grayscale contrast-110 brightness-90
-            "
-          >
-            <img
-              src="/eyes.png"
-              alt="Eyes"
-              className="w-full h-full object-cover"
-              style={{ transform: "scale(1.05)" }}
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/0 via-transparent to-transparent" />
-          </div>
-        </div>
-      </div>
-        {/* Background Text - Aamir Naqvi at Bottom */}
-        <div 
-          ref={backgroundTextRef}
-          className="absolute inset-0 flex items-center justify-center pointer-events-none z-10 hidden md:flex"
-          style={{ 
-                            letterSpacing: '2em',
-            top: '65%',
-            transition: isMobile() ? 'none' : 'transform 0.4s ease-out'
-          }}
-        >
-          <div  
-            className={`text-[3.6rem] md:text-[9rem] lg:text-[18rem] font-bosenAlt text-black/40 select-none leading-none opacity-0 animate-fade-in-delayed`}
-            style={{
-              animationDelay: '0.1s',  
-              animationFillMode: 'forwards', 
-              textShadow: '0 10px 20px rgba(0,0,0,0.2)'
-            }}
-          >
-            AAMIR NAQVI
-          </div>
-        </div>
-        
-        {/* New Main Typography - Full Width Light Font */}
-        <div 
-          ref={newMainTextRef}
-          className="absolute top-0 left-0 right-0 flex items-start justify-center z-40 w-full px-6" 
-          style={{ top: '0%' }}
-        >
-          <div className="w-full text-center">
-            <h1 
-              className="text-3xl md:text-6xl lg:text-4xl text-white/100 leading-none opacity-0 animate-fade-in-delayed"
-              style={{ 
-                fontFamily: 'IBM Plex Sans, sans-serif',
-                fontWeight: '100', 
-                fontSize: '100%',
-                letterSpacing: '0.4em',
-                wordSpacing: '2em',
-                animationDelay: '0.8s', 
-                animationFillMode: 'forwards',
-                textShadow: '0 10px 20px rgba(0,0,0,0.3)'
+        {/* Mobile Images - Stacked full screen */}
+        <div className="md:hidden">
+          {mobileImages.map((img, index) => (
+            <div
+              key={index}
+              ref={(el) => (mobileImagesRef.current[index] = el)}
+              className="hero-image-layer fixed inset-0 w-full h-full"
+              style={{
+                zIndex: index + 1,
+                animation: `slideUp 1s ease-out ${img.delay}s forwards`,
+                transform: 'translateY(100vh)',
               }}
             >
-           I EDIT VISUALS            THAT BUILD BRAND
-            </h1>
-          </div>
+              <img
+                src={img.src}
+                alt={`Mobile layer ${index + 1}`}
+                className="w-full h-full object-cover"
+              />
+            </div>
+          ))}
         </div>
-      
 
-        {/* New Scroll Indicator */}
-        <div 
-          ref={newScrollIndicatorRef}
-          className="fixed inset-0 left-[-0.6%] top-[90%] -translate-x-1/2 opacity-0 animate-fade-in-delayed z-40 cursor-pointer"
-          style={{ 
-            bottom: '10%', 
-            animationDelay: '2.5s', 
-            animationFillMode: 'forwards'
-          }}
-          onClick={() => {
-            portfolioSectionRef.current?.scrollIntoView({ 
-              behavior: 'smooth' 
-            });
-          }}
-        >
-          <div className="flex flex-col items-center group">
-            {/* Animated scroll indicator */}
-            <div className="relative">
-              {/* Outer ring */}
-              <div className="w-14 h-14 rounded-full border-2 border-white/30 flex items-center justify-center group-hover:border-white/50 transition-all duration-300">
-                {/* Inner animated chevron */}
-                <div className="flex flex-col items-center animate-pulse">
-                  <div className="w-0 h-0 border-l-[5px] border-r-[5px] border-t-[7px] border-l-transparent border-r-transparent border-t-white/70 mb-1" />
-                  <div className="w-0 h-0 border-l-[5px] border-r-[5px] border-t-[7px] border-l-transparent border-r-transparent border-t-white/50" />
-                </div>
-              </div>
-              
-              {/* Pulsing background effect */}
-              <div className="absolute inset-0 rounded-full bg-white/5 animate-ping" style={{ animationDuration: '3s' }} />
+        {/* Desktop Images - Stacked full screen */}
+        <div className="hidden md:block">
+          {desktopImages.map((img, index) => (
+            <div
+              key={index}
+              ref={(el) => (desktopImagesRef.current[index] = el)}
+              className="hero-image-layer fixed inset-0 w-full h-full"
+              style={{
+                zIndex: index + 1,
+                animation: `slideUp 1s ease-out ${img.delay}s forwards`,
+                transform: 'translateY(100vh)',
+              }}
+            >
+              <img
+                src={img.src}
+                alt={`Desktop layer ${index + 1}`}
+                className="w-full h-full object-cover"
+              />
             </div>
-            
-            <p className="text-white/50 text-xs font-bosenAlt mt-3 uppercase tracking-widest group-hover:text-white/70 transition-colors duration-300">
-              Explore Work
-            </p>
-          </div>
+          ))}
         </div>
- 
-        {/* Floating Testimonial Badges */}
-        {showTestimonials && (
-          <div
-            className="
-              fixed 
-              top-10       /* distance from top */
-              left-10      /* distance from left */
-              right-24     /* distance from right */
-              bottom-10    /* distance from bottom */ 
-              z-0 
-              pointer-events-none 
-              overflow-hidden 
-              transform -translate-y-20
-            "
-            style={{ pointerEvents: 'none' }}
-          >
-            <div className="hidden md:block h-[20%] w-[20%]">
-              {testimonialBadges.map((badge, index) => (
-                <TestimonialBadge key={index} badge={badge} />
-              ))}
-            </div>
-          </div>
-        )}
       </div>
 
       {/* Portfolio Section */}
